@@ -1,10 +1,64 @@
 .App {
   text-align: center;
+  font-family: "Raleway", sans-serif;
 }
 
 .App-logo {
   height: 40vmin;
   pointer-events: none;
+}
+header {
+  padding: 10px;
+  font-family: "Josefin Sans", sans-serif;
+  font-size: 30px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: #292826;
+  color: #f9d142;
+}
+.dessert {
+  margin: 0 70px 0 50px;
+}
+ul {
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+  padding: 0px;
+  margin: 0px;
+}
+li {
+  padding: 10px;
+  margin: 5px;
+}
+.background {
+  font-size: 30px;
+  color: whitesmoke;
+  width: 100%;
+  height: 600px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url("https://images.unsplash.com/photo-1496662559123-ac291228fb6c?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1050&q=80");
+}
+.divider {
+  padding: 40px;
+  font-size: 30px;
+  background-color: #292826;
+  color: #f9d142;
+}
+
+.items {
+  margin: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+footer {
+  padding: 40px;
+  font-size: 20px;
+  background-color: #292826;
+  color: #f9d142;
 }
 
 @media (prefers-reduced-motion: no-preference) {
