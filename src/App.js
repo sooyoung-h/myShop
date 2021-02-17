@@ -1,10 +1,11 @@
 import logo from './logo.svg';
 import './App.css';
 import { Nav, Jumbotron  } from "react-bootstrap";
-import { Route } from 'react-router-dom';
+import { Link, Route } from 'react-router-dom';
 import { useState } from 'react';
 import { propTypes } from 'react-bootstrap/esm/Image';
 import { connect } from "react-redux";
+import Detail from "./Detail.js";
 
 function Modal(props) {
   //하위로 컴포넌트를 뺴놓을 때마다 태그 속성으로 보내주고 props.( )로 받기!
@@ -14,6 +15,9 @@ function Modal(props) {
       <h4 className="item__name" >{props.state[props.num].name}</h4>
       <p className="item__content" >{props.state[props.num].content}</p>
       <p className="item__price" >{props.state[props.num].price}원</p>
+      <button className="item__detailBtn smallBtn">
+        <Link to={"/detail/"+ props.num}>See more</Link>
+        </button>
       <button className="item__detailBtn smallBtn" onClick={()=>{
         props.modalChange(false);
       }}>Close</button>
@@ -30,14 +34,7 @@ function Home(props) {
   
   return(
       <div className="home">
-        <header>
-          <span className="dessert" >Dessert</span>
-          <ul>
-            <li>Home</li>
-            <li>Detail</li>
-            <li>Cart</li>
-          </ul>
-        </header>
+        
 
         <Jumbotron className="background">
           <span className="jumbo__title" >Enjoy your dessert time</span>
@@ -90,11 +87,19 @@ function Home(props) {
 function App(props) {
   return (
     <div className="App">
-      <Route path="/">
+      <header>
+          <span className="dessert" >Dessert</span>
+          <ul>
+            <li><Link to="/">Home</Link></li>
+            <li><Link to="/cart">Cart</Link></li>
+          </ul>
+        </header>
+      <Route exact path="/">
         <Home state={props.state} ></Home>
         {/* 리덕스로 받아온 스테이트를 다시 하위컴포넌트로 전달해줄 경우 */}
       </Route>
       <Route path="/detail/:id">
+        <Detail></Detail>
       </Route>
       <Route path="/cart">
       </Route>
