@@ -1,8 +1,11 @@
 import logo from './logo.svg';
 import './App.css';
 import { Nav, Jumbotron  } from "react-bootstrap";
+import { useState } from 'react';
+import { propTypes } from 'react-bootstrap/esm/Image';
+import { connect } from "react-redux";
 
-function App() {
+function App(props) {
   return (
     <div className="App">
       <header>
@@ -27,13 +30,14 @@ function App() {
 
       <div className="items">
         <div className="items__item" >
-          fgnjdfhkm
+          <img src={props.state[0].path} ></img>
+          
         </div>
         <div className="items__item" >
-          fgnjdfhkm
+
         </div>
         <div className="items__item" >
-          fgnjdfhkm
+
         </div>
       </div>
 
@@ -44,4 +48,8 @@ function App() {
   );
 }
 
-export default App;
+function myFunc(state){
+  return {state : state}
+}
+
+export default connect(myFunc)(App);
