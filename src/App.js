@@ -1,7 +1,7 @@
 import logo from "./logo.svg";
 import "./App.css";
 import { Nav, Jumbotron } from "react-bootstrap";
-import { Link, Route } from "react-router-dom";
+import { Link, Route, useHistory } from "react-router-dom";
 import { useState } from "react";
 import { propTypes } from "react-bootstrap/esm/Image";
 import { connect } from "react-redux";
@@ -39,6 +39,7 @@ function Home(props) {
   //상위 컴포넌트가 태그 속성으로 전달해준 데이터임 !!
   let [modal, modalChange] = useState(false);
   let [num, numChange] = useState(0);
+  let history = useHistory();
 
   return (
     <div className="home">
@@ -68,14 +69,6 @@ function Home(props) {
                 }}
               >
                 Detail
-              </button>
-              <button
-                className="item__addBtn smallBtn"
-                onClick={() => {
-                  console.log("add button");
-                }}
-              >
-                Add
               </button>
             </div>
           );
