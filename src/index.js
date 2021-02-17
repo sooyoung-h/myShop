@@ -8,8 +8,17 @@ import {createStore} from 'redux';
 import reportWebVitals from './reportWebVitals';
 import Data from './data.js';
 
-function reducer () {
-  return Data;
+function reducer (state = Data, action) {
+  if (action.type === 'addItem') {
+    let copy = [...state];
+    copy[action.id].total++;
+    return copy;
+  } else if (action.type === 'minusItem') {
+    let copy = [...state];
+    copy[action.id].total--;
+    return copy;
+  } 
+  return state;
 }
 
 let store = createStore(reducer);

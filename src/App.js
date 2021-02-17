@@ -6,6 +6,7 @@ import { useState } from 'react';
 import { propTypes } from 'react-bootstrap/esm/Image';
 import { connect } from "react-redux";
 import Detail from "./Detail.js";
+import Cart from "./Cart.js";
 
 function Modal(props) {
   //하위로 컴포넌트를 뺴놓을 때마다 태그 속성으로 보내주고 props.( )로 받기!
@@ -102,6 +103,7 @@ function App(props) {
         <Detail></Detail>
       </Route>
       <Route path="/cart">
+        <Cart></Cart>
       </Route>
     </div>
   );
