@@ -87,17 +87,17 @@ function App(props) {
   return (
     <div className="App">
       <header>
-        <span className="dessert">Dessert</span>
+        <span className="dessert">🍩Dessert</span>
         <ul>
           <li>
-            <Link to="/">Home</Link>
+            <Link to="/myShop">Home</Link>
           </li>
           <li>
             <Link to="/cart">Cart</Link>
           </li>
         </ul>
       </header>
-      <Route exact path="/">
+      <Route exact path="/myShop">
         <Home state={props.state}></Home>
         {/* 리덕스로 받아온 스테이트를 다시 하위컴포넌트로 전달해줄 경우 */}
       </Route>
