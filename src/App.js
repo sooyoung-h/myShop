@@ -6,9 +6,28 @@ import { useState } from 'react';
 import { propTypes } from 'react-bootstrap/esm/Image';
 import { connect } from "react-redux";
 
+function Modal(props) {
+  //하위로 컴포넌트를 뺴놓을 때마다 태그 속성으로 보내주고 props.( )로 받기!
+  return (
+    <div className="detailModal">
+      <img src={props.state[props.num].path}></img>
+      <h4 className="item__name" >{props.state[props.num].name}</h4>
+      <p className="item__content" >{props.state[props.num].content}</p>
+      <p className="item__price" >{props.state[props.num].price}원</p>
+      <button className="item__detailBtn smallBtn" onClick={()=>{
+        props.modalChange(false);
+      }}>Close</button>
+    </div>
+  )
+}
+
 function Home(props) {
   //!! 여기서 props.(  )는 리덕스에서 받아온 데이터가 아닌
   //상위 컴포넌트가 태그 속성으로 전달해준 데이터임 !!
+  let [modal, modalChange] = useState(false);
+  let [num, numChange] = useState(0);
+
+  
   return(
       <div className="home">
         <header>
@@ -21,8 +40,8 @@ function Home(props) {
         </header>
 
         <Jumbotron className="background">
-          <span>Hello, world!</span>
-          <p>
+          <span className="jumbo__title" >Enjoy your dessert time</span>
+          <p className="jumbo__content" >
             This is a simple hero unit, a simple jumbotron-style component for calling
             extra attention to featured content or information.
           </p>
@@ -33,14 +52,32 @@ function Home(props) {
         </div>
 
         <div className="items">
-          <div className="items__item" >
-          <img src={props.state[0].path}></img>
-          </div>
-          <div className="items__item" >
-          </div>
-          <div className="items__item" >
-          </div>
+          {
+            props.state.map((a,i)=>{
+              return (
+                <div className="items__item" >
+                  <img src={props.state[i].path}></img>
+                  <h4 className="item__name" >{props.state[i].name}</h4>
+                  <p className="item__content" >{props.state[i].content}</p>
+                  <p className="item__price" >{props.state[i].price}원</p>
+                  <button className="item__detailBtn smallBtn" onClick={()=>{
+                    modalChange(true);
+                    numChange(i);
+                  }}>Detail</button>
+                  <button className="item__addBtn smallBtn" onClick={()=>{
+                    console.log('add button');
+                  }}>Add</button>
+                  
+                </div>
+              )
+            })
+          }
         </div>
+        {
+            modal === true
+            ? <Modal state={props.state} num={num} modalChange={modalChange} ></Modal>
+            : null
+        }
 
         <footer>
           contact@food.make.you.happy
